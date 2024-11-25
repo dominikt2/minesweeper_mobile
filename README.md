@@ -10,9 +10,14 @@ A modern Minesweeper game built using Flutter, designed for mobile devices. The 
     - Use flag button to be able to flag / unflag a tile.
   - Dynamic Difficulty:
     - Choose from multiple difficulty levels: Easy, Medium, Hard, or create a Custom level (work in progress).
+        - Easy - 10 x 10 grid with 10 mines
+        - Medium - 15 x 10 grid with 25 mines
+        - Hard - 25 x 10 grid with 50 mines
   - Interactive Design:
     - Intuitive touch controls for seamless gameplay.
     - Real-time feedback with visual indicators (e.g., color-coded results for win/loss).
       
-📱 Screenshots
-![Alt text](assets/1m.png)
+📱 Screenshots </br>
+![Base Game](assets/1m.png)
+![Lost game](assets/2m.png)
+![Won Game](assets/3m.png)
