@@ -13,6 +13,7 @@ A modern Minesweeper game built using Flutter, designed for mobile devices. The 
         - Easy - 10 x 10 grid with 10 mines
         - Medium - 15 x 10 grid with 25 mines
         - Hard - 25 x 10 grid with 50 mines
+        - Custom difficulty - min. 10 x 10 grid with min. 1 mine
   - Interactive Design:
     - Intuitive touch controls for seamless gameplay.
     - Real-time feedback with visual indicators (e.g., color-coded results for win/loss).
