@@ -15,3 +15,4 @@ A modern Minesweeper game built using Flutter, designed for mobile devices. The 
     - Real-time feedback with visual indicators (e.g., color-coded results for win/loss).
       
 📱 Screenshots
+![alt text](https://imgur.com/a/LlFlHY7)
