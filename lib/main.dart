@@ -10,7 +10,9 @@ bool firstClick = true;
 bool gameOver = false;
 bool isFlagging = false;
 bool playerWon = false;
-int boardColor = 0xFF45494f;
+int boardColor = 0xFFFFFFFF;
+int customBoardSize = 10;
+int customMines = 1;
 
 void main() {
   runApp(MyApp());
@@ -23,10 +25,12 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();
 }
 
+
+
 class MyAppState extends State<MyApp> {
 
   String _selectedOption = "Easy";
-  final List<String> _options = ["Easy", "Medium", "Hard", "Custom"];
+  final List<String> _options = ["Easy", "Medium", "Hard"];
 
  @override
 Widget build(BuildContext context) {
@@ -69,9 +73,93 @@ Widget build(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.center, 
             children: [
               //MENU WYBORU TRUDNOSCI
+             Row(
+              mainAxisAlignment: MainAxisAlignment.center, // Center align the entire row
+              children: [
+                // Custom Board Size Setup
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text(
+                        'Custom Board size: $customBoardSize',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              incrementBoardSize();
+                            },
+                            child: const Icon(Icons.add),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              decrementBoardSize();
+                            },
+                            child: const Icon(Icons.remove),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 20), // Space between Board Size and Mines Setup
+                // Custom Mines Setup
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text(
+                        'Custom Mines: $customMines',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              incrementMines();
+                            },
+                            child: const Icon(Icons.add),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              decrementMines();
+                            },
+                            child: const Icon(Icons.remove),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  setCustomGame();
+                },
+                child: const Text('Custom Game'),
+              ),
+            ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -337,6 +425,44 @@ void fillMines(int index) {
         });
       }
     }
+  }
+
+  void incrementBoardSize(){
+    setState(() {
+      customBoardSize = customBoardSize + 10;
+    });
+  }
+
+  void decrementBoardSize(){
+    setState(() {
+      if(customBoardSize > 10)
+        customBoardSize = customBoardSize - 10;
+    });
+  }
+
+  void incrementMines(){
+    setState(() {
+      customMines = customMines + 1;
+    });
+  }
+
+  void decrementMines(){
+    setState(() {
+      if(customMines > 1)
+        customMines = customMines - 1;
+    });
+  }
+
+  void setCustomGame(){
+    setState(() {
+      resetGame();
+      board = List.filled(customBoardSize, 10);
+      gamingboard = List.filled(customBoardSize, 10);
+
+      mines = customMines;
+      score = customMines;
+      boardSize = (customBoardSize/10).toInt();
+    });
   }
 
 }
